@@ -6,6 +6,9 @@ from rest_framework import viewsets
 import os
 from django.conf import settings
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 class FileView(viewsets.ModelViewSet):
     queryset = File.objects.all()
@@ -13,5 +16,5 @@ class FileView(viewsets.ModelViewSet):
     
     def get_queryset(self):
         x = os.path.join(settings.BASE_DIR, 'files')
-        print(x)
+        logger.info(x)
         return super().get_queryset()
